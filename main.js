@@ -169,23 +169,23 @@ function initChessBoard(boardData) {
 function renderChessBoard(chessWindow, chessBoard, chessRuleset) {
     let chessPieces = chessRuleset.pieces;
     let boardData = chessRuleset.boardData["attributes"];
-    for (let i = 0; i < boardData.height; i++) {
-        for (let j = 0; j < boardData.width; j++) {
+    for (let i = 0; i < boardData["height"]; i++) {
+        for (let j = 0; j < boardData["width"]; j++) {
             let chessPiece = chessPieces[chessBoard[i][j]["piece"]["pieceName"]]["sprite"];
             let tileColor = chessBoard[i][j]["tile"]["pattern"];
             let pieceColor = chessBoard[i][j]["piece"]["color"];
             let color = [tileColor, pieceColor];
 
-            for (let k = 0; k < boardData.tileHeight; k++) {
-                chessWindow.drawText((" "*boardData.tileWidth), i*24, j*48+(16*k), color);
+            for (let k = 0; k < boardData["tileHeight"]; k++) {
+                chessWindow.drawText((" "*boardData["tileWidth"]), i*24, j*48+(16*k), color);
             }
 
             console.log("Should be drawing piece");
 
-            let pieceXOffset = 16 * Math.floor((boardData.tileWidth - boardData.pieceHeight)/2);
-            let pieceYOffset = 16 * Math.floor((boardData.tileHeight - boardData.pieceWidth)/2);
+            let pieceXOffset = 16 * Math.floor((boardData["tileWidth"] - boardData["pieceHeight"])/2);
+            let pieceYOffset = 16 * Math.floor((boardData["tileHeight"] - boardData["pieceWidth"])/2);
 
-            for (let k = 0; k < boardData.pieceHeight; k++) {
+            for (let k = 0; k < boardData["pieceHeight"]; k++) {
                 let rowOffset = k * 16;
                 chessWindow.drawText(chessPiece[0], i*24+pieceYOffset, j*48+rowOffset+pieceXOffset, color);
             }
