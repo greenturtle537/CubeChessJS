@@ -99,7 +99,9 @@ class ChessRuleset {
     }
     async load() {
         this.globalData = await loadJSON(`https://files.glitchtech.top/CubeChess/${this.version["alias"]}/global.json`);
+        console.log(this.globalData);
         for (let dependency in this.globalData["dependencies"]) {
+            console.log(depedency);
             getAllChess().then((versions) => {
                 versions.forEach((version, index) => {
                     if (version["identifier"] === dependency["identifier"]) {
