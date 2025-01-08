@@ -129,7 +129,7 @@ function game(chessRuleset) {
         "pawn": ["   ", " o ", "[_]"], // Pawn
     }
 
-    renderChessBoard(gameWindow, chessBoard, chessRuleset.pieces);
+    renderChessBoard(gameWindow, chessBoard, chessRuleset);
 
 };
 
@@ -166,18 +166,28 @@ function initChessBoard(boardData) {
     return chessBoard;
 }
 
-function renderChessBoard(chessWindow, chessBoard, chessPieces) {
-    for (let i = 0; i < 8; i++) {
-        for (let j = 0; j < 8; j++) {
+function renderChessBoard(chessWindow, chessBoard, chessRuleset) {
+    let chessPieces = chessRuleset.pieces;
+    let boardData = chessRuleset.boardData;
+    for (let i = 0; i < boardData.height; i++) {
+        for (let j = 0; j < boardData.width; j++) {
             let chessPiece = chessPieces[chessBoard[i][j]["piece"]["pieceName"]]["sprite"];
             let tileColor = chessBoard[i][j]["tile"]["pattern"];
             let pieceColor = chessBoard[i][j]["piece"]["color"];
             let color = [tileColor, pieceColor];
-            //console.log(`${chessPiece}  ${i}  ${j}`);
-            console.log(color);
-            //chessWindow.drawText(chessPiece[0], i*24, j*48, color);
-            chessWindow.drawText(chessPiece[0], i*24, j*48+16, color);
-            chessWindow.drawText(chessPiece[1], i*24, j*48+32, color);
+
+            for (let k = 0; k < chessRuleset.tileHeight; k++) {
+                chessWindow.drawText((" "*chessRuleset.tileWidth), i*24, j*48+(16*k), color);
+            }
+
+            pieceXOffset = 16 * Math.floor((chessRuleset.tileWidth - chessRuleset.pieceHeight)/2);
+            pieceYOffset = 16 * Math.floor((chessRuleset.tileHeight - chessRuleset.pieceWidth)/2);
+
+            for (let k = 0; k < chessRuleset.pieceHeight; k++) {
+                rowOffset = k * 16;
+                chessWindow.drawText(chessPiece[0], i*24+pieceYOffset, j*48+rowOffset+pieceXOffset, color);
+            }
+            
         }
     }
 }

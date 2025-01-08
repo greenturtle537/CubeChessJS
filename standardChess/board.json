@@ -2,6 +2,10 @@
     "attributes": {
         "width": 8,
         "height": 8,
+        "tileWidth": 4,
+        "tileHeight": 4,
+        "pieceWidth": 2,
+        "pieceHeight": 2,
         "players": [
             {
                 "delimiter": "p0_",
