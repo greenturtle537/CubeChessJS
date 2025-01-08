@@ -155,7 +155,7 @@ function initChessBoard(boardData) {
             for (let player in players) {
                 let player_delimiter = players[player]["delimiter"];
                 if (startingChessBoard[j][i].includes(player_delimiter)) {
-                    separatedValue = startingChessBoard[j][i].replace(player_delimiter, '');
+                    let separatedValue = startingChessBoard[j][i].replace(player_delimiter, '');
                     chessBoard[i][j] = {
                         "tile": {
                             "x": i,
