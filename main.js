@@ -54,6 +54,23 @@ function mainMenu() {
     gameWindow.drawText("> Exit", 0, 48);
 }
 
+async function loadJSON(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error loading JSON:', error);
+    }
+}
+
+async function getAllChess() {
+    return await loadJSON('https://files.glitchtech.top/CubeChess/chess.json');
+}
+
 function selectionMenu() {
     gameWindow.drawText("Welcome to Chess", 288, 8);
     chessVersions = getAllChess();
@@ -72,23 +89,6 @@ function selectionMenu() {
             }
         });
     });
-}
-
-async function loadJSON(url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error loading JSON:', error);
-    }
-}
-
-async function getAllChess() {
-    return await loadJSON('https://files.glitchtech.top/CubeChess/chess.json');
 }
 
 function game() {
