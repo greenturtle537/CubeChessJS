@@ -89,8 +89,9 @@ Object.prototype.merge = function(target) {
 };
 
 class ChessRuleset {
-    constructor(version) {
+    constructor(version, allVersions) {
         this.version = version;
+        this.allVersions = allVersions;
         this.globalData = {};
         this.boardData = {};
         this.piecesData = {};
@@ -103,14 +104,13 @@ class ChessRuleset {
         for (var i=0; i < this.globalData["dependencies"].length; i++) {
             let depedency = this.globalData["dependencies"][i];
             console.log(depedency);
-            getAllChess().then((versions) => {
-                versions.forEach((version, index) => {
-                    if (version["identifier"] === dependency["identifier"]) {
-                        this.subRulesets.push(new ChessRuleset(version));
-                        this.subRulesets[this.subRulesets.length - 1].rulesetLoad();
-                    }
-                });
-            });
+            for (var j=0; j < this.allVersions.length; j++) {
+                let version = this.allVersions[j];
+                if (version["identifier"] === depedency["identifier"]) {
+                    this.subRulesets.push(new ChessRuleset(version));
+                    this.subRulesets[this.subRulesets.length - 1].rulesetLoad();
+                }
+            }
         }
     }
 
@@ -138,7 +138,7 @@ function selectionMenu() {
             if (!isNaN(selectedIndex) && versions[selectedIndex]) {
                 gameWindow.clearScreen();
                 gameWindow.drawText("Loading...", 288, 0);
-                const chessRuleset = new ChessRuleset(versions[selectedIndex]);
+                const chessRuleset = new ChessRuleset(versions[selectedIndex],versions);
                 chessRuleset.load().then(() => {
                     game(chessRuleset);
                 });
