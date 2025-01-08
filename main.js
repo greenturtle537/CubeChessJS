@@ -81,7 +81,16 @@ function game() {
         [1, 2, 3, 4, 5, 3, 2, 1]
     ]);
 
-    renderChessBoard(gameWindow, chessBoard);
+    const chessPieces = {
+        6: ` o \n U \n[_]`,
+        "rook": 2,
+        "knight": 3,
+        "bishop": 4,
+        "queen": 5,
+        "king": 6,
+    }
+
+    renderChessBoard(gameWindow, chessBoard, chessPieces);
 
 };
 
@@ -96,10 +105,11 @@ function initChessBoard(startingChessBoard) {
     return chessBoard;
 }
 
-function renderChessBoard(chessWindow, chessBoard) {
+function renderChessBoard(chessWindow, chessBoard, chessPieces) {
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
-            chessWindow.drawText(`${chessBoard[i][j]}`, i*8, j*16);
+            let chessPiece = chessPieces[chessBoard[i][j]];
+            chessWindow.drawText(chessPiece, i*8, j*16);
         }
     }
 }
