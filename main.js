@@ -66,9 +66,27 @@ function introSeq() {
     });
 }
 
+async function loadJSON(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error loading JSON:', error);
+    }
+}
+
+async function getAllChess() {
+    return await loadJSON('https://files.glitchtech.top/CubeChess/chess.json');
+}
+
 function game() {
     let gameWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, null);
     gameWindow.drawText("Chess", 288, 0);
+    console.log(getAllChess());
 
     let chessBoard = initChessBoard([
         [1, 2, 3, 4, 5, 3, 2, 1],
