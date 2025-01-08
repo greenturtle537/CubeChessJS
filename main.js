@@ -1,10 +1,11 @@
 import {CanvasWindow, TextWindow, KeyBehaviour} from 'https://files.glitchtech.top/GE.js';
 const canvasWindow = new CanvasWindow(640, 384, main); // Allows for a 80x24 text grid with 8x16 characters
 let textWindow;
+let chessBoard = [];
+
 function main() {
     const menuBehaviour = (textWindow=null) => {
         let menuPos = 0;
-        
         document.addEventListener("keydown", function(event) {
             const key = event.key;
             if  ((key === "w" || key === "s") && (menuPos != -1 && menuPos != 3)) {
@@ -32,6 +33,12 @@ function main() {
             }
         });
     }
+    const chessBehaviour = (textWindow=null) => {
+        let menuPos = 0;
+        document.addEventListener("keydown", function(event) {
+            const key = event.key;
+        });
+    }
 
     textWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, menuBehaviour);
 
@@ -45,10 +52,30 @@ function mainMenu() {
     textWindow.drawText("Main Menu", 288, 0);
     textWindow.drawText("> Play Chess", 0, 16);
     textWindow.drawText("> Options", 0, 32);
-    textWindow.drawText("> Exit", 0, 64);
+    textWindow.drawText("> Exit", 0, 48);
 }
 
 function introSeq() {
     textWindow.drawText("Welcome to Chess", 288, 8);
     textWindow.drawText("Press Enter to Continue", 256, 24);
+    document.addEventListener("keydown", function(event) {
+        const key = event.key;
+        if (key != null) {
+            textWindow.clearScreen();
+            game();
+        }
+    });
+}
+
+function game() {
+    chessWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, null);
+};
+
+function initChessBoard() {
+    for (let i = 0; i < 8; i++) {
+        chessBoard[i] = [];
+        for (let j = 0; j < 8; j++) {
+            chessBoard[i][j] = 0;
+        }
+    }
 }
