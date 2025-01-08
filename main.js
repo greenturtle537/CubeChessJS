@@ -82,12 +82,13 @@ function game() {
     ]);
 
     const chessPieces = {
-        6: ` o \n U \n[_]`,
-        "rook": 2,
-        "knight": 3,
-        "bishop": 4,
-        "queen": 5,
-        "king": 6,
+        0: ["   ", "   ", "   "], // Empty
+        1: ["   ", "   ", "   "], // Empty
+        2: ["   ", "   ", "   "], // Empty
+        3: ["   ", "   ", "   "], // Empty
+        4: ["   ", "   ", "   "], // Empty
+        5: ["   ", "   ", "   "], // Empty
+        6: [" o ", " U ", "[_]"], // Pawn
     }
 
     renderChessBoard(gameWindow, chessBoard, chessPieces);
@@ -109,7 +110,9 @@ function renderChessBoard(chessWindow, chessBoard, chessPieces) {
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
             let chessPiece = chessPieces[chessBoard[i][j]];
-            chessWindow.drawText(chessPiece, i*8, j*16);
+            chessWindow.drawText(chessPiece[0], i*24, j*48);
+            chessWindow.drawText(chessPiece[1], i*24, j*48+8);
+            chessWindow.drawText(chessPiece[2], i*24, j*48+16);
         }
     }
 }
