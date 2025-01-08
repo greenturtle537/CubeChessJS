@@ -184,7 +184,7 @@ function renderChessBoard(chessWindow, chessBoard, chessRuleset) {
             }
 
             let pieceYOffset = 16 * Math.floor((boardData["tileWidth"] - boardData["pieceWidth"])/2);
-            let pieceXOffset = 16 * Math.floor((boardData["tileHeight"] - boardData["pieceHeight"])/2);
+            let pieceXOffset = 8 * Math.floor((boardData["tileHeight"] - boardData["pieceHeight"])/2);
 
             for (let k = 0; k < boardData["pieceHeight"]; k++) {
                 let rowOffset = k * 16;
