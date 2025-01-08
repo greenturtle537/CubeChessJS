@@ -1,0 +1,38 @@
+{
+    "name": "king",
+    "value": 100,
+    "moves": [
+        {
+            "direction": "forward",
+            "steps": 1
+        },
+        {
+            "direction": "backward",
+            "steps": 1
+        },
+        {
+            "direction": "left",
+            "steps": 1
+        },
+        {
+            "direction": "right",
+            "steps": 1
+        },
+        {
+            "direction": "forward-left",
+            "steps": 1
+        },
+        {
+            "direction": "forward-right",
+            "steps": 1
+        },
+        {
+            "direction": "backward-left",
+            "steps": 1
+        },
+        {
+            "direction": "backward-right",
+            "steps": 1
+        }
+    ]
+}

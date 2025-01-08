@@ -1,0 +1,10 @@
+{
+    "name": "pawn",
+    "value": 1,
+    "moves": [
+        {
+            "direction": "forward",
+            "steps": 1
+        }
+    ]
+}

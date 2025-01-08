@@ -1,0 +1,22 @@
+{
+    "name": "knight",
+    "value": 3,
+    "moves": [
+        {
+            "direction": "forward",
+            "steps": 2
+        },
+        {
+            "direction": "backward",
+            "steps": 2
+        },
+        {
+            "direction": "left",
+            "steps": 1
+        },
+        {
+            "direction": "right",
+            "steps": 1
+        }
+    ]
+}

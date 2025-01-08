@@ -1,0 +1,18 @@
+{
+    "attributes": {
+        "width": 8,
+        "height": 8,
+        "players": 2,
+        "setup":
+        [
+            ["rook", "knight", "bishop", "queen", "king", "bishop", "knight", "rook"],
+            ["pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn"],
+            ["blank", "blank", "blank", "blank", "blank", "blank", "blank", "blank"],
+            ["blank", "blank", "blank", "blank", "blank", "blank", "blank", "blank"],
+            ["blank", "blank", "blank", "blank", "blank", "blank", "blank", "blank"],
+            ["blank", "blank", "blank", "blank", "blank", "blank", "blank", "blank"],
+            ["pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn"],
+            ["rook", "knight", "bishop", "queen", "king", "bishop", "knight", "rook"]
+        ]
+    }
+}

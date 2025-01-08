@@ -1,0 +1,38 @@
+{
+    "name": "queen",
+    "value": 9,
+    "moves": [
+        {
+            "direction": "forward",
+            "steps": 8
+        },
+        {
+            "direction": "backward",
+            "steps": 8
+        },
+        {
+            "direction": "left",
+            "steps": 8
+        },
+        {
+            "direction": "right",
+            "steps": 8
+        },
+        {
+            "direction": "forward-left",
+            "steps": 8
+        },
+        {
+            "direction": "forward-right",
+            "steps": 8
+        },
+        {
+            "direction": "backward-left",
+            "steps": 8
+        },
+        {
+            "direction": "backward-right",
+            "steps": 8
+        }
+    ]
+}

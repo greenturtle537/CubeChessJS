@@ -1,0 +1,9 @@
+{
+    "pawn": "pieces/pawn.json",
+    "rook": "pieces/rook.json",
+    "knight": "pieces/knight.json",
+    "bishop": "pieces/bishop.json",
+    "queen": "pieces/queen.json",
+    "king": "pieces/king.json",
+    "blank": "pieces/blank.json"
+}

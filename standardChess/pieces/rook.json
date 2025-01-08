@@ -1,0 +1,22 @@
+{
+    "name": "rook",
+    "value": 5,
+    "moves": [
+        {
+            "direction": "forward",
+            "steps": 8
+        },
+        {
+            "direction": "backward",
+            "steps": 8
+        },
+        {
+            "direction": "left",
+            "steps": 8
+        },
+        {
+            "direction": "right",
+            "steps": 8
+        }
+    ]
+}

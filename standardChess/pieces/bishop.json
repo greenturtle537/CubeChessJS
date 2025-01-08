@@ -1,0 +1,22 @@
+{
+    "name": "bishop",
+    "value": 3,
+    "moves": [
+        {
+            "direction": "forward-left",
+            "steps": 8
+        },
+        {
+            "direction": "forward-right",
+            "steps": 8
+        },
+        {
+            "direction": "backward-left",
+            "steps": 8
+        },
+        {
+            "direction": "backward-right",
+            "steps": 8
+        }
+    ]
+}

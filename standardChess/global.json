@@ -1,0 +1,20 @@
+{
+    "identifier": "f440e8d4-c1f7-4b03-b976-e22f649cf660",
+    "name": "Standard Chess",
+    "alias": "standardChess",
+    "description": "The standard rules of chess.",
+    "version": "1.0.0",
+    "author": "greenturtle537",
+    "board": "board.json",
+    "pieces": "pieces.json",
+    "dependencies": [
+        {
+            "identifier": "f440e8d4-c1f7-4b03-b976-e22f649cf660",
+            "alias": "standardChess",
+            "components": [
+                "board",
+                "pieces"
+            ]
+        }
+    ]
+}
