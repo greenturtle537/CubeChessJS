@@ -116,7 +116,9 @@ function game(chessRuleset) {
     let gameWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, null);
     gameWindow.drawText("=== Chess ===", 288, 0);
 
-    let chessBoard = initChessBoard([
+    initChessBoard(chessRuleset.boardData);
+
+    let chessBoard = [
         [1, 2, 3, 4, 5, 3, 2, 1],
         [6, 6, 6, 6, 6, 6, 6, 6],
         [0, 0, 0, 0, 0, 0, 0, 0],
@@ -125,7 +127,7 @@ function game(chessRuleset) {
         [0, 0, 0, 0, 0, 0, 0, 0],
         [6, 6, 6, 6, 6, 6, 6, 6],
         [1, 2, 3, 4, 5, 3, 2, 1]
-    ]);
+    ];
 
     const chessPieces = {
         0: ["   ", "   ", "   "], // Empty
