@@ -48,7 +48,7 @@ function main() {
 
 function mainMenu() {
     //This is the main menu
-    gameWindow.drawText("Main Menu", 288, 0);
+    gameWindow.drawText("> Main Menu", 288, 0);
     gameWindow.drawText("> Play Chess", 0, 16);
     gameWindow.drawText("> Options", 0, 32);
     gameWindow.drawText("> Exit", 0, 48);
@@ -170,9 +170,9 @@ function renderChessBoard(chessWindow, chessBoard, chessPieces) {
         for (let j = 0; j < 8; j++) {
             let chessPiece = chessPieces[chessBoard[i][j]["piece"]["pieceName"]];
             //console.log(`${chessPiece}  ${i}  ${j}`);
-            chessWindow.drawText(chessPiece[0], i*24, j*48, [0,15]);
-            chessWindow.drawText(chessPiece[1], i*24, j*48+16, [0,15]);
-            chessWindow.drawText(chessPiece[2], i*24, j*48+32, [0,15]);
+            chessWindow.drawText(chessPiece[0], i*24, j*48, [1,0]);
+            chessWindow.drawText(chessPiece[1], i*24, j*48+16, [1,0]);
+            chessWindow.drawText(chessPiece[2], i*24, j*48+32, [1,0]);
         }
     }
 }
