@@ -83,12 +83,12 @@ function game() {
 
     const chessPieces = {
         0: ["   ", "   ", "   "], // Empty
-        1: ["   ", "   ", "   "], // Empty
-        2: ["   ", "   ", "   "], // Empty
-        3: ["   ", "   ", "   "], // Empty
-        4: ["   ", "   ", "   "], // Empty
-        5: ["   ", "   ", "   "], // Empty
-        6: [" o ", " U ", "[_]"], // Pawn
+        1: ["╚╬╝", ") (", "[_]"], // Rook
+        2: ["T\ ", "|\)", "[_]"], // Knight
+        3: ["(+)", ") (", "[_]"], // Bishop
+        4: [" . ", ") (", "[_]"], // Queen
+        5: [" ┼ ", ") (", "[_]"], // King
+        6: ["   ", " o ", "[_]"], // Pawn
     }
 
     renderChessBoard(gameWindow, chessBoard, chessPieces);
