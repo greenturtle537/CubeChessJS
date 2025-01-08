@@ -189,7 +189,7 @@ function renderChessBoard(chessWindow, chessBoard, chessRuleset) {
             for (let k = 0; k < boardData["pieceHeight"]; k++) {
                 let rowOffset = k * 16;
                 // We do not check for pieceWidth because in Freakbob we trust
-                chessWindow.drawText(chessPiece[k], i*(boardData["tileWidth"]*8)+pieceYOffset, j*(boardData["tileHeight"]*16)+rowOffset+pieceXOffset, color);
+                chessWindow.drawText(chessPiece[k], i*(boardData["tileWidth"]*8)+pieceXOffset, j*(boardData["tileHeight"]*16)+rowOffset+pieceYOffset, color);
             }
             
         }
