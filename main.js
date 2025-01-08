@@ -1,6 +1,6 @@
 import {CanvasWindow, TextWindow, KeyBehaviour} from 'https://files.glitchtech.top/GE.js';
 const canvasWindow = new CanvasWindow(640, 384, main); // Allows for a 80x24 text grid with 8x16 characters
-let textWindow;
+let gameWindow;
 
 function main() {
     const menuBehaviour = (textWindow=null) => {
@@ -39,7 +39,7 @@ function main() {
         });
     }
 
-    textWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, menuBehaviour);
+    gameWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, menuBehaviour);
 
     mainMenu();
 }
@@ -48,28 +48,28 @@ function main() {
 
 function mainMenu() {
     //This is the main menu
-    textWindow.drawText("Main Menu", 288, 0);
-    textWindow.drawText("> Play Chess", 0, 16);
-    textWindow.drawText("> Options", 0, 32);
-    textWindow.drawText("> Exit", 0, 48);
+    gameWindow.drawText("Main Menu", 288, 0);
+    gameWindow.drawText("> Play Chess", 0, 16);
+    gameWindow.drawText("> Options", 0, 32);
+    gameWindow.drawText("> Exit", 0, 48);
 }
 
 function introSeq() {
-    textWindow.drawText("Welcome to Chess", 288, 8);
-    textWindow.drawText("Press Enter to Continue", 256, 24);
+    gameWindow.drawText("Welcome to Chess", 288, 8);
+    gameWindow.drawText("Press Enter to Continue", 256, 24);
     document.addEventListener("keydown", function(event) {
         const key = event.key;
         if (key != null) {
-            textWindow.clearScreen();
+            gameWindow.clearScreen();
             game();
         }
     });
 }
 
 function game() {
-    let chessWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, null);
-    chessWindow.drawText("Chess", 288, 0);
-    
+    let gameWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, null);
+    gameWindow.drawText("Chess", 288, 0);
+
     let chessBoard = initChessBoard([
         [1, 2, 3, 4, 5, 3, 2, 1],
         [6, 6, 6, 6, 6, 6, 6, 6],
@@ -81,7 +81,7 @@ function game() {
         [1, 2, 3, 4, 5, 3, 2, 1]
     ]);
 
-    renderChessBoard(chessWindow, chessBoard);
+    renderChessBoard(gameWindow, chessBoard);
 
 };
 
