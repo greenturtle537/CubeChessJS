@@ -1,4 +1,4 @@
-import {CanvasWindow, TextWindow} from 'https://files.glitchtech.top/GE.js';
+import {CanvasWindow, TextWindow, KeyBehaviour} from 'https://files.glitchtech.top/GE.js';
 const canvasWindow = new CanvasWindow(640, 384, main); // Allows for a 80x24 text grid with 8x16 characters
 let textWindow;
 function main() {
