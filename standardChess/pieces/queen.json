@@ -1,5 +1,9 @@
 {
     "name": "queen",
+    "sprite": [
+        "<.>", 
+        "[_]"
+    ],
     "value": 9,
     "moves": [
         {

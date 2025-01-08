@@ -1,3 +1,7 @@
 {
-    "name": "blank"
+    "name": "blank",
+    "sprite": [
+        "   ",
+        "   "
+    ]
 }

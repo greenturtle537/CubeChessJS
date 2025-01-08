@@ -1,5 +1,9 @@
 {
     "name": "bishop",
+    "sprite": [
+        "(+)",
+        "[_]"
+    ],
     "value": 3,
     "moves": [
         {
