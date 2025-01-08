@@ -153,7 +153,7 @@ function initChessBoard(boardData) {
         chessBoard[i] = [];
         for (let j = 0; j < 8; j++) {
             for (let player in players) {
-                player_delimiter = players[player]["delimiter"];
+                let player_delimiter = players[player]["delimiter"];
                 if (startingChessBoard[j][i].includes(player_delimiter)) {
                     separatedValue = startingChessBoard[j][i].replace(player_delimiter, '');
                     chessBoard[i][j] = {
