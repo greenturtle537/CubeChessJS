@@ -73,10 +73,8 @@ async function getAllChess() {
 
 function selectionMenu() {
     gameWindow.drawText("Welcome to Chess", 288, 8);
-    chessVersions = getAllChess();
-    console.log(chessVersions);
     gameWindow.drawText("Select a Chess Version (number) to continue", 256, 24);
-    chessVersions.then((versions) => {
+    getAllChess().then((versions) => {
         versions.forEach((version, index) => {
             gameWindow.drawText(`${index}: ${version.name}`, 0, 40 + index * 16);
         });
