@@ -69,13 +69,31 @@ function introSeq() {
 
 function game() {
     chessWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, null);
+    initChessBoard([
+        [1, 2, 3, 4, 5, 3, 2, 1],
+        [6, 6, 6, 6, 6, 6, 6, 6],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [6, 6, 6, 6, 6, 6, 6, 6],
+        [1, 2, 3, 4, 5, 3, 2, 1]
+    ]);
 };
 
-function initChessBoard() {
+function initChessBoard(startingChessBoard) {
     for (let i = 0; i < 8; i++) {
         chessBoard[i] = [];
         for (let j = 0; j < 8; j++) {
-            chessBoard[i][j] = 0;
+            chessBoard[i][j] = startingChessBoard[i][j];
+        }
+    }
+}
+
+function renderChessBoard() {
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            chessWindow.drawText(chessBoard[i][j], i*8, j*16);
         }
     }
 }
