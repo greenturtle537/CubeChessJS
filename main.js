@@ -168,7 +168,7 @@ function initChessBoard(boardData) {
 
 function renderChessBoard(chessWindow, chessBoard, chessRuleset) {
     let chessPieces = chessRuleset.pieces;
-    let boardData = chessRuleset.boardData;
+    let boardData = chessRuleset.boardData["attributes"];
     for (let i = 0; i < boardData.height; i++) {
         for (let j = 0; j < boardData.width; j++) {
             let chessPiece = chessPieces[chessBoard[i][j]["piece"]["pieceName"]]["sprite"];
