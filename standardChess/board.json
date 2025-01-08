@@ -7,7 +7,7 @@
         "pieceWidth": 3,
         "pieceHeight": 2,
         "pieceXOffset": 1,
-        "pieceYOffset": 0,
+        "pieceYOffset": 1,
         "players": [
             {
                 "delimiter": "p0_",
