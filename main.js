@@ -177,7 +177,7 @@ function renderChessBoard(chessWindow, chessBoard, chessRuleset) {
             let color = [tileColor, pieceColor];
 
             for (let k = 0; k < boardData["tileHeight"]; k++) {
-                chessWindow.drawText((" "*boardData["tileWidth"]), i*(boardData["tileHeight"]*8), j*(boardData["tileWidth"]*16)+(16*k), color);
+                chessWindow.drawText(("."*boardData["tileWidth"]), i*(boardData["tileHeight"]*8), j*(boardData["tileWidth"]*16)+(16*k), color);
                 console.log("Should be drawing piece");
             }
 
