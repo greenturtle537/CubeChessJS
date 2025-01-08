@@ -116,7 +116,6 @@ function game(chessRuleset) {
     let gameWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, null);
     gameWindow.drawText("=== Chess ===", 288, 0);
 
-
     let chessBoard = initChessBoard([
         [1, 2, 3, 4, 5, 3, 2, 1],
         [6, 6, 6, 6, 6, 6, 6, 6],
@@ -142,14 +141,36 @@ function game(chessRuleset) {
 
 };
 
-function initChessBoard(startingChessBoard) {
+function initChessBoard(boardData) {
+    let startingChessBoard = boardData["attributes"]["setup"];
+    let players = boardData["attributes"]["players"];
+    let pattern = boardData["attributes"]["pattern"];
+
     let chessBoard = [];
     for (let i = 0; i < 8; i++) {
         chessBoard[i] = [];
         for (let j = 0; j < 8; j++) {
-            chessBoard[i][j] = startingChessBoard[j][i];
+            for (let player in players) {
+                player_delimiter = players[player]["delimiter"];
+                if (startingChessBoard[j][i].includes(player_delimiter)) {
+                    separatedValue = startingChessBoard[j][i].replace(player_delimiter, '');
+                    chessBoard[i][j] = {
+                        "tile": {
+                            "x": i,
+                            "y": j,
+                            "pattern": pattern["setup"][i][j]
+                        },
+                        "piece": {
+                            "player": player_delimiter,
+                            "pieceName": separatedValue,
+                            "color": players[player]["color"],
+                        }
+                    }
+                }
+            }
         }
     }
+    console.log(chessBoard);
     return chessBoard;
 }
 
