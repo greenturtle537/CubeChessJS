@@ -2,9 +2,9 @@
     "attributes": {
         "width": 8,
         "height": 8,
-        "tileWidth": 4,
-        "tileHeight": 4,
-        "pieceWidth": 2,
+        "tileWidth": 5,
+        "tileHeight": 3,
+        "pieceWidth": 3,
         "pieceHeight": 2,
         "players": [
             {
