@@ -67,7 +67,7 @@ function introSeq() {
 }
 
 function game() {
-    chessWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, null);
+    let chessWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, null);
 
     let chessBoard = initChessBoard([
         [1, 2, 3, 4, 5, 3, 2, 1],
