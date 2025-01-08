@@ -86,6 +86,7 @@ class ChessRuleset {
         for (const [key, url] of Object.entries(this.piecesData)) {
             const piece = await loadJSON(`https://files.glitchtech.top/CubeChess/${this.version["alias"]}/${url}`);
             this.pieces[key] = piece;
+            console.log(piece);
         }
     }
 }
