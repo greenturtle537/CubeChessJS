@@ -107,7 +107,7 @@ class ChessRuleset {
             for (var j=0; j < this.allVersions.length; j++) {
                 let version = this.allVersions[j];
                 if (version["identifier"] === depedency["identifier"]) {
-                    this.subRulesets.push(new ChessRuleset(version, allVersions));
+                    this.subRulesets.push(new ChessRuleset(version, this.allVersions));
                     this.subRulesets[this.subRulesets.length - 1].rulesetLoad();
                 }
             }
