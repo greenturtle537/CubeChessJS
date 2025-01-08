@@ -21,7 +21,7 @@ function main() {
                     // Start
                     textWindow.drawText("An Error Occured", 272, 0, 12);
                     textWindow.clearScreen();
-                    introSeq();
+                    selectionMenu();
                 } else if (menuPos === 1) {
                     // Options
                     textWindow.drawText("An Error Occured", 272, 0, 12);
@@ -54,15 +54,23 @@ function mainMenu() {
     gameWindow.drawText("> Exit", 0, 48);
 }
 
-function introSeq() {
+function selectionMenu() {
     gameWindow.drawText("Welcome to Chess", 288, 8);
-    gameWindow.drawText("Press Enter to Continue", 256, 24);
-    document.addEventListener("keydown", function(event) {
-        const key = event.key;
-        if (key != null) {
-            gameWindow.clearScreen();
-            game();
-        }
+    chessVersions = getAllChess();
+    console.log(chessVersions);
+    gameWindow.drawText("Select a Chess Version (number) to continue", 256, 24);
+    chessVersions.then((versions) => {
+        versions.forEach((version, index) => {
+            gameWindow.drawText(`${index}: ${version.name}`, 0, 40 + index * 16);
+        });
+        document.addEventListener("keydown", function(event) {
+            const key = event.key;
+            const selectedIndex = parseInt(key, 10);
+            if (!isNaN(selectedIndex) && versions[selectedIndex]) {
+                gameWindow.clearScreen();
+                game(versions[selectedIndex]);
+            }
+        });
     });
 }
 
@@ -86,7 +94,7 @@ async function getAllChess() {
 function game() {
     let gameWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, null);
     gameWindow.drawText("Chess", 288, 0);
-    console.log(getAllChess());
+
 
     let chessBoard = initChessBoard([
         [1, 2, 3, 4, 5, 3, 2, 1],
