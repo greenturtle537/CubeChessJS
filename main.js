@@ -182,11 +182,11 @@ function renderChessBoard(chessWindow, chessBoard, chessRuleset) {
             }
 
 
-            pieceXOffset = 16 * Math.floor((boardData.tileWidth - boardData.pieceHeight)/2);
-            pieceYOffset = 16 * Math.floor((boardData.tileHeight - boardData.pieceWidth)/2);
+            let pieceXOffset = 16 * Math.floor((boardData.tileWidth - boardData.pieceHeight)/2);
+            let pieceYOffset = 16 * Math.floor((boardData.tileHeight - boardData.pieceWidth)/2);
 
             for (let k = 0; k < boardData.pieceHeight; k++) {
-                rowOffset = k * 16;
+                let rowOffset = k * 16;
                 chessWindow.drawText(chessPiece[0], i*24+pieceYOffset, j*48+rowOffset+pieceXOffset, color);
             }
             
