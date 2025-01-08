@@ -114,6 +114,7 @@ class ChessRuleset {
     }
 
     async rulesetLoad() {
+        this.globalData = await loadJSON(`https://files.glitchtech.top/CubeChess/${this.version["alias"]}/global.json`);
         this.boardData.merge(await loadJSON(`https://files.glitchtech.top/CubeChess/${this.version["alias"]}/${this.globalData.board}`));
         this.piecesData = await loadJSON(`https://files.glitchtech.top/CubeChess/${this.version["alias"]}/${this.globalData.pieces}`);
         for (const [key, url] of Object.entries(this.piecesData)) {
