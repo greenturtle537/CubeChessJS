@@ -5,15 +5,15 @@
         "players": [
             {
                 "delimiter": "p0_",
-                "color": "#000000"
+                "color": 1
             },
             {
                 "delimiter": "p1_",
-                "color": "#000000"
+                "color": 15
             },
             {
                 "delimiter": "p2_",
-                "color": "#ffffff"
+                "color": 0
             }
         ],
         "setup":
@@ -30,8 +30,8 @@
         "pattern":
         {
             "colors": {
-                "0": [8,8],
-                "1": [9,9]
+                "0": 6,
+                "1": 14
             },
             "setup":
             [
