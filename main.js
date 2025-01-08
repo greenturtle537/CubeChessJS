@@ -71,6 +71,25 @@ async function getAllChess() {
     return await loadJSON('https://files.glitchtech.top/CubeChess/chess.json');
 }
 
+class ChessRuleset {
+    constructor(version) {
+        this.version = version;
+        this.globalData = null;
+        this.boardData = null;
+        this.piecesData = null;
+        this.pieces = {};
+    }
+    async load() {
+        this.globalData = await loadJSON(`https://files.glitchtech.top/CubeChess/${this.version["alias"]}/global.json`);
+        this.boardData = await loadJSON(`https://files.glitchtech.top/CubeChess/${this.version["alias"]}/${this.globalData.board}`);
+        this.piecesData = await loadJSON(`https://files.glitchtech.top/CubeChess/${this.version["alias"]}/${this.globalData.pieces}`);
+        for (const [key, url] of Object.entries(this.piecesData)) {
+            const piece = await loadJSON(`https://files.glitchtech.top/CubeChess/${this.version["alias"]}/${url}`);
+            this.pieces[key] = piece;
+        }
+    }
+}
+
 function selectionMenu() {
     gameWindow.drawText("Welcome to Chess", 288, 8);
     gameWindow.drawText("Select a Chess Version (number) to continue", 256, 24);
@@ -83,13 +102,17 @@ function selectionMenu() {
             const selectedIndex = parseInt(key, 10);
             if (!isNaN(selectedIndex) && versions[selectedIndex]) {
                 gameWindow.clearScreen();
-                game(versions[selectedIndex]);
+                gameWindow.drawText("Loading...", 288, 0);
+                const chessRuleset = new ChessRuleset(versions[selectedIndex]);
+                chessRuleset.load().then(() => {
+                    game(chessRuleset);
+                });
             }
         });
     });
 }
 
-function game() {
+function game(chessRuleset) {
     let gameWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, null);
     gameWindow.drawText("Chess", 288, 0);
 
