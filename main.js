@@ -149,7 +149,7 @@ function initChessBoard(boardData) {
                         "tile": {
                             "x": i,
                             "y": j,
-                            "pattern": pattern["setup"][i][j]
+                            "pattern": pattern["colors"][pattern["setup"][i][j]], // Super awesome pattern system
                         },
                         "piece": {
                             "player": player_delimiter,
