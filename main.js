@@ -169,7 +169,7 @@ function renderChessBoard(chessWindow, chessBoard, chessPieces) {
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
             let chessPiece = chessPieces[chessBoard[i][j]["piece"]["pieceName"]];
-            let color = chessBoard[i][j]["tile"]["pattern"];
+            let color = [chessBoard[i][j]["tile"]["pattern"][0]];
             //console.log(`${chessPiece}  ${i}  ${j}`);
             console.log(color);
             //chessWindow.drawText(chessPiece[0], i*24, j*48, color);
