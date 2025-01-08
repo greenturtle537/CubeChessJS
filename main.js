@@ -71,6 +71,23 @@ async function getAllChess() {
     return await loadJSON('https://files.glitchtech.top/CubeChess/chess.json');
 }
 
+Object.prototype.merge = function(target) {
+    let merged = {};
+    // First, copy all properties from this object
+    for (const key in this) {
+        if (this.hasOwnProperty(key)) {
+            merged[key] = this[key];
+        }
+    }
+    // Then add or skip properties from target
+    for (const key in target) {
+        if (!(key in merged)) {
+            merged[key] = target[key];
+        }
+    }
+    return merged;
+};
+
 class ChessRuleset {
     constructor(version) {
         this.version = version;
@@ -78,16 +95,30 @@ class ChessRuleset {
         this.boardData = null;
         this.piecesData = null;
         this.pieces = {};
+        this.subRulesets = [];
     }
     async load() {
         this.globalData = await loadJSON(`https://files.glitchtech.top/CubeChess/${this.version["alias"]}/global.json`);
-        this.boardData = await loadJSON(`https://files.glitchtech.top/CubeChess/${this.version["alias"]}/${this.globalData.board}`);
+        for (let dependency in this.globalData["dependencies"]) {
+            getAllChess().then((versions) => {
+                versions.forEach((version, index) => {
+                    if (version["identifier"] === dependency["identifier"]) {
+                        this.subRulesets.push(new ChessRuleset(version));
+                        this.subRulesets[this.subRulesets.length - 1].rulesetLoad();
+                    }
+                });
+            });
+        }
+    }
+
+    async rulesetLoad() {
+        this.boardData.merge(await loadJSON(`https://files.glitchtech.top/CubeChess/${this.version["alias"]}/${this.globalData.board}`));
         this.piecesData = await loadJSON(`https://files.glitchtech.top/CubeChess/${this.version["alias"]}/${this.globalData.pieces}`);
         for (const [key, url] of Object.entries(this.piecesData)) {
             const piece = await loadJSON(`https://files.glitchtech.top/CubeChess/${this.version["alias"]}/${url}`);
             this.pieces[key] = piece;
         }
-        console.log(this.pieces);
+        console.log(this.boardData);
     }
 }
 

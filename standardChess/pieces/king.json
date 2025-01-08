@@ -2,7 +2,7 @@
     "name": "king",
     "sprite": [
         "<┼>",
-        "[_]"
+        "└─┘"
     ],
     "value": 100,
     "moves": [

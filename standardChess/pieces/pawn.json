@@ -2,7 +2,7 @@
     "name": "pawn",
     "sprite": [
         " o ", 
-        "[_]"
+        "└─┘"
     ],
     "value": 1,
     "moves": [
