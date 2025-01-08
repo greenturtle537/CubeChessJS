@@ -176,11 +176,11 @@ function renderChessBoard(chessWindow, chessBoard, chessRuleset) {
             let pieceColor = chessBoard[i][j]["piece"]["color"];
             let color = [tileColor, pieceColor];
 
+            console.log("Should be drawing piece");
             for (let k = 0; k < boardData.tileHeight; k++) {
                 chessWindow.drawText((" "*boardData.tileWidth), i*24, j*48+(16*k), color);
             }
 
-            console.log("Should be drawing piece");
 
             pieceXOffset = 16 * Math.floor((boardData.tileWidth - boardData.pieceHeight)/2);
             pieceYOffset = 16 * Math.floor((boardData.tileHeight - boardData.pieceWidth)/2);
