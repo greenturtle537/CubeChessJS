@@ -8,26 +8,26 @@ function main() {
         document.addEventListener("keydown", function(event) {
             const key = event.key;
             if  ((key === "w" || key === "s") && (menuPos != -1 && menuPos != 3)) {
-                textWindow.drawText(">", 0, 0+(16*(menuPos+1)), 0);
+                textWindow.drawText(">", 0, 0+(16*(menuPos+1)));
             }
             if ( key === "w" && menuPos != 0) {
                 menuPos--;
-                textWindow.drawText(">", 0, 0+(16*(menuPos+1)), 15);
+                textWindow.drawText(">", 0, 0+(16*(menuPos+1)), [15,0]);
             } else if (key === "s" && menuPos != 2) {
                 menuPos++;
-                textWindow.drawText(">", 0, 0+(16*(menuPos+1)), 15);
+                textWindow.drawText(">", 0, 0+(16*(menuPos+1)), [15,0]);
             } else if (key === "Enter") {
                 if (menuPos === 0) {
                     // Start
-                    textWindow.drawText("An Error Occured", 272, 0, 12);
+                    textWindow.drawText("An Error Occured", 272, [0, 12]);
                     textWindow.clearScreen();
                     selectionMenu();
                 } else if (menuPos === 1) {
                     // Options
-                    textWindow.drawText("An Error Occured", 272, 0, 12);
+                    textWindow.drawText("An Error Occured", 272, [0, 12]);
                 } else if (menuPos === 2) {
                     // Exit
-                    textWindow.drawText("An Error Occured", 272, 0, 12);
+                    textWindow.drawText("An Error Occured", 272, [0, 12]);
                 }
             }
         });
@@ -170,9 +170,9 @@ function renderChessBoard(chessWindow, chessBoard, chessPieces) {
         for (let j = 0; j < 8; j++) {
             let chessPiece = chessPieces[chessBoard[i][j]["piece"]["pieceName"]];
             //console.log(`${chessPiece}  ${i}  ${j}`);
-            chessWindow.drawText(chessPiece[0], i*24, j*48);
-            chessWindow.drawText(chessPiece[1], i*24, j*48+16);
-            chessWindow.drawText(chessPiece[2], i*24, j*48+32);
+            chessWindow.drawText(chessPiece[0], i*24, j*48, [0,15]);
+            chessWindow.drawText(chessPiece[1], i*24, j*48+16, [0,15]);
+            chessWindow.drawText(chessPiece[2], i*24, j*48+32, [0,15]);
         }
     }
 }

@@ -24,8 +24,6 @@
             ["p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank"],
             ["p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank"],
             ["p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank"],
-            ["p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank"],
-            ["p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank"],
             ["p2_pawn", "p2_pawn", "p2_pawn", "p2_pawn", "p2_pawn", "p2_pawn", "p2_pawn", "p2_pawn"],
             ["p2_rook", "p2_knight", "p2_bishop", "p2_queen", "p2_king", "p2_bishop", "p2_knight", "p2_rook"]
         ],
