@@ -116,27 +116,16 @@ function game(chessRuleset) {
     let gameWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, null);
     gameWindow.drawText("=== Chess ===", 288, 0);
 
-    initChessBoard(chessRuleset.boardData);
-
-    let chessBoard = [
-        [1, 2, 3, 4, 5, 3, 2, 1],
-        [6, 6, 6, 6, 6, 6, 6, 6],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [6, 6, 6, 6, 6, 6, 6, 6],
-        [1, 2, 3, 4, 5, 3, 2, 1]
-    ];
+    let chessBoard = initChessBoard(chessRuleset.boardData);
 
     const chessPieces = {
-        0: ["   ", "   ", "   "], // Empty
-        1: ["╚╬╝", ") (", "[_]"], // Rook
-        2: ["T\\ ", "|\\)", "[_]"], // Knight
-        3: ["(+)", ") (", "[_]"], // Bishop
-        4: [" . ", ") (", "[_]"], // Queen
-        5: [" ┼ ", ") (", "[_]"], // King
-        6: ["   ", " o ", "[_]"], // Pawn
+        "blank": ["   ", "   ", "   "], // Empty
+        "rook": ["╚╬╝", ") (", "[_]"], // Rook
+        "knight": ["T\\ ", "|\\)", "[_]"], // Knight
+        "bishop": ["(+)", ") (", "[_]"], // Bishop
+        "queen": [" . ", ") (", "[_]"], // Queen
+        "king": [" ┼ ", ") (", "[_]"], // King
+        "pawn": ["   ", " o ", "[_]"], // Pawn
     }
 
     renderChessBoard(gameWindow, chessBoard, chessPieces);
@@ -179,7 +168,7 @@ function initChessBoard(boardData) {
 function renderChessBoard(chessWindow, chessBoard, chessPieces) {
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
-            let chessPiece = chessPieces[chessBoard[i][j]];
+            let chessPiece = chessPieces[chessBoard[i][j]["piece"]["pieceName"]];
             //console.log(`${chessPiece}  ${i}  ${j}`);
             chessWindow.drawText(chessPiece[0], i*24, j*48);
             chessWindow.drawText(chessPiece[1], i*24, j*48+16);
