@@ -11,7 +11,7 @@ function mainMenu() {
     //This is the main menu
     textWindow.drawText("Main Menu", 288, 8);
     textWindow.drawText("> Start", 0, 16);
-    textWindow.drawText("Load", 16, 32, 9);
+    textWindow.drawText("Load", 16, 32, 0);
     textWindow.drawText(">", 0, 32, 0);
     textWindow.drawText("> Options", 0, 48);
     textWindow.drawText("> Exit", 0, 64);
