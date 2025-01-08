@@ -5,14 +5,36 @@
         "players": 2,
         "setup":
         [
-            ["rook", "knight", "bishop", "queen", "king", "bishop", "knight", "rook"],
-            ["pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn"],
-            ["blank", "blank", "blank", "blank", "blank", "blank", "blank", "blank"],
-            ["blank", "blank", "blank", "blank", "blank", "blank", "blank", "blank"],
-            ["blank", "blank", "blank", "blank", "blank", "blank", "blank", "blank"],
-            ["blank", "blank", "blank", "blank", "blank", "blank", "blank", "blank"],
-            ["pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn"],
-            ["rook", "knight", "bishop", "queen", "king", "bishop", "knight", "rook"]
-        ]
+            ["p1_rook", "p1_knight", "p1_bishop", "p1_queen", "p1_king", "p1_bishop", "p1_knight", "p1_rook"],
+            ["p1_pawn", "p1_pawn", "p1_pawn", "p1_pawn", "p1_pawn", "p1_pawn", "p1_pawn", "p1_pawn"],
+            ["p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank"],
+            ["p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank"],
+            ["p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank"],
+            ["p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank"],
+            ["p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank"],
+            ["p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank", "p0_blank"],
+            ["p2_pawn", "p2_pawn", "p2_pawn", "p2_pawn", "p2_pawn", "p2_pawn", "p2_pawn", "p2_pawn"],
+            ["p2_rook", "p2_knight", "p2_bishop", "p2_queen", "p2_king", "p2_bishop", "p2_knight", "p2_rook"]
+        ],
+        "pattern":
+        {
+            "colors": 
+            [
+                {"0": "#f0d9b5"},
+                {"1": "#ffce9e"}
+            ],
+            "setup":
+            [
+                "0", "1", "0", "1", "0", "1", "0", "1",
+                "1", "0", "1", "0", "1", "0", "1", "0",
+                "0", "1", "0", "1", "0", "1", "0", "1",
+                "1", "0", "1", "0", "1", "0", "1", "0",
+                "0", "1", "0", "1", "0", "1", "0", "1",
+                "1", "0", "1", "0", "1", "0", "1", "0",
+                "0", "1", "0", "1", "0", "1", "0", "1",
+                "1", "0", "1", "0", "1", "0", "1", "0"
+            ]
+        }
+        
     }
 }
