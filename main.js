@@ -114,7 +114,7 @@ function selectionMenu() {
 
 function game(chessRuleset) {
     let gameWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, null);
-    gameWindow.drawText("Chess", 288, 0);
+    gameWindow.drawText("=== Chess ===", 288, 0);
 
 
     let chessBoard = initChessBoard([
