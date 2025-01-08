@@ -91,9 +91,9 @@ Object.prototype.merge = function(target) {
 class ChessRuleset {
     constructor(version) {
         this.version = version;
-        this.globalData = null;
-        this.boardData = null;
-        this.piecesData = null;
+        this.globalData = {};
+        this.boardData = {};
+        this.piecesData = {};
         this.pieces = {};
         this.subRulesets = [];
     }
