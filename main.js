@@ -129,7 +129,7 @@ function game(chessRuleset) {
         "pawn": ["   ", " o ", "[_]"], // Pawn
     }
 
-    renderChessBoard(gameWindow, chessBoard, chessPieces);
+    renderChessBoard(gameWindow, chessBoard, chessRuleset.pieces);
 
 };
 
@@ -169,8 +169,7 @@ function initChessBoard(boardData) {
 function renderChessBoard(chessWindow, chessBoard, chessPieces) {
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
-            let chessPiece = chessBoard["pieces"];//[chessBoard[i][j]["piece"]["pieceName"]];//["sprite"];
-            //let chessPiece = chessPieces[chessBoard[i][j]["piece"]["pieceName"]];
+            let chessPiece = chessPieces[chessBoard[i][j]["piece"]["pieceName"]];["sprite"];
             let tileColor = chessBoard[i][j]["tile"]["pattern"];
             let pieceColor = chessBoard[i][j]["piece"]["color"];
             let color = [tileColor, pieceColor];
