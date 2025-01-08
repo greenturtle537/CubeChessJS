@@ -1,7 +1,6 @@
 import {CanvasWindow, TextWindow, KeyBehaviour} from 'https://files.glitchtech.top/GE.js';
 const canvasWindow = new CanvasWindow(640, 384, main); // Allows for a 80x24 text grid with 8x16 characters
 let textWindow;
-let chessBoard = [];
 
 function main() {
     const menuBehaviour = (textWindow=null) => {
@@ -69,7 +68,8 @@ function introSeq() {
 
 function game() {
     chessWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, null);
-    initChessBoard([
+
+    let chessBoard = initChessBoard([
         [1, 2, 3, 4, 5, 3, 2, 1],
         [6, 6, 6, 6, 6, 6, 6, 6],
         [0, 0, 0, 0, 0, 0, 0, 0],
@@ -79,19 +79,23 @@ function game() {
         [6, 6, 6, 6, 6, 6, 6, 6],
         [1, 2, 3, 4, 5, 3, 2, 1]
     ]);
-    renderChessBoard();
+
+    renderChessBoard(chessWindow, chessBoard);
+
 };
 
 function initChessBoard(startingChessBoard) {
+    let chessBoard = [];
     for (let i = 0; i < 8; i++) {
         chessBoard[i] = [];
         for (let j = 0; j < 8; j++) {
             chessBoard[i][j] = startingChessBoard[i][j];
         }
     }
+    return chessBoard;
 }
 
-function renderChessBoard() {
+function renderChessBoard(chessWindow, chessBoard) {
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
             chessWindow.drawText(chessBoard[i][j], i*8, j*16);
