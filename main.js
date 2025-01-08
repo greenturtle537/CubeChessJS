@@ -109,11 +109,11 @@ function initChessBoard(startingChessBoard) {
 function renderChessBoard(chessWindow, chessBoard, chessPieces) {
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
-            let chessPiece = chessPieces[chessBoard[i][j]];
-            console.log(`${chessPiece}  ${i}  ${j}`);
-            chessWindow.drawText(chessPiece[0], i*48, j*24);
-            chessWindow.drawText(chessPiece[1], i*48, j*24+8);
-            chessWindow.drawText(chessPiece[2], i*48, j*24+16);
+            let chessPiece = chessPieces[chessBoard[j][i]];
+            console.log(`${chessPiece}  ${j}  ${i}`);
+            chessWindow.drawText(chessPiece[0], j*48, i*24);
+            chessWindow.drawText(chessPiece[1], j*48, i*24+16);
+            chessWindow.drawText(chessPiece[2], j*48, i*24+32);
         }
     }
 }
