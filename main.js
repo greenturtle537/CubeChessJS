@@ -29,7 +29,7 @@ function main() {
                 } else if (key === "Enter") {
                     if (menuPos === 0) {
                         // Start
-                        textWindow.drawText("An Error Occured", 272, 0, 12);
+                        textWindow.drawText("An Error Occured", 272, 0, 16);
                         flag++;
                         textWindow.clearScreen();
                         introSeq();
@@ -37,10 +37,10 @@ function main() {
                         // Load
                     } else if (menuPos === 2) {
                         // Options
-                        textWindow.drawText("An Error Occured", 272, 0, 12);
+                        textWindow.drawText("An Error Occured", 272, 0, 16);
                     } else if (menuPos === 3) {
                         // Exit
-                        textWindow.drawText("An Error Occured", 272, 0, 12);
+                        textWindow.drawText("An Error Occured", 272, 0, 16);
                     }
                 }
             } else if (flag === 2) {
@@ -92,3 +92,7 @@ function mainMenu() {
     textWindow.drawText("> Exit", 0, 64);
 }
 
+function introSeq() {
+    textWindow.drawText("Welcome to Chess", 288, 8);
+    textWindow.drawText("Press Enter to Continue", 256, 24);
+}
