@@ -85,7 +85,7 @@ class ChessRuleset {
         this.piecesData = await loadJSON(`https://files.glitchtech.top/CubeChess/${this.version["alias"]}/${this.globalData.pieces}`);
         for (const [key, url] of Object.entries(this.piecesData)) {
             const piece = await loadJSON(`https://files.glitchtech.top/CubeChess/${this.version["alias"]}/${url}`);
-            this.pieces[`'${key}'`] = piece; // I guess it needs to be stringified?
+            this.pieces[key] = piece; // I guess it needs to be stringified?
         }
         console.log(this.pieces);
     }
@@ -169,7 +169,7 @@ function initChessBoard(boardData) {
 function renderChessBoard(chessWindow, chessBoard, chessPieces) {
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
-            let chessPiece = chessBoard["pieces"][chessBoard[i][j]["piece"]["pieceName"]]["sprite"];
+            let chessPiece = chessBoard["pieces"];//[chessBoard[i][j]["piece"]["pieceName"]];//["sprite"];
             //let chessPiece = chessPieces[chessBoard[i][j]["piece"]["pieceName"]];
             let tileColor = chessBoard[i][j]["tile"]["pattern"];
             let pieceColor = chessBoard[i][j]["piece"]["color"];
