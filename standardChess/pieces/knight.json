@@ -2,7 +2,7 @@
     "name": "knight",
     "sprite": [
         " T\\", 
-        "└─┘"
+        "[_]"
     ],
     "value": 3,
     "moves": [
