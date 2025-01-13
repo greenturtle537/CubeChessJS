@@ -1,6 +1,10 @@
 import {CanvasWindow, TextWindow, KeyBehaviour} from 'https://files.glitchtech.top/GE.js';
 const canvasWindow = new CanvasWindow(640, 384, main); // Allows for a 80x24 text grid with 8x16 characters
 let gameWindow;
+let cursorX = 0;
+let cursorY = 0;
+let selectionX = null;
+let selectionY = null;
 
 function main() {
     const menuBehaviour = (textWindow=null) => {
@@ -32,10 +36,33 @@ function main() {
             }
         });
     }
-    const chessBehaviour = (textWindow=null) => {
+    
+    const chessBehaviour = (textWindow=null, chessWindow=null, chessBoard=null, chessRuleset=null, renderChessTile=null) => {
         let menuPos = 0;
         document.addEventListener("keydown", function(event) {
             const key = event.key;
+            switch (key) {
+                case "w":
+                    if (cursorY > 0) cursorY--;
+                    break;
+                case "s":
+                    if (cursorY < 7) cursorY++;
+                    break;
+                case "a":
+                    if (cursorX > 0) cursorX--;
+                    break;
+                case "d":
+                    if (cursorX < 7) cursorX++;
+                    break;
+                case "Enter":
+                    selectedX = cursorX;
+                    selectedY = cursorY;
+                    break;
+                case "Backspace":
+                    selectedX = null;
+                    selectedY = null;
+                    break;
+            }
         });
     }
 
@@ -113,85 +140,7 @@ function selectionMenu() {
     });
 }
 
-function game(chessRuleset) {
-    let gameWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, null);
-    gameWindow.drawText("=== Chess ===", 288, 0);
-
-    let chessBoard = initChessBoard(chessRuleset.boardData);
-
-    const chessPieces = {
-        "blank": ["   ", "   ", "   "], // Empty
-        "rook": ["╚╬╝", ") (", "[_]"], // Rook
-        "knight": ["T\\ ", "|\\)", "[_]"], // Knight
-        "bishop": ["(+)", ") (", "[_]"], // Bishop
-        "queen": [" . ", ") (", "[_]"], // Queen
-        "king": [" ┼ ", ") (", "[_]"], // King
-        "pawn": ["   ", " o ", "[_]"], // Pawn
-    }
-
-    renderChessBoard(gameWindow, chessBoard, chessRuleset);
-
-};
-
-function initChessBoard(boardData) {
-    let startingChessBoard = boardData["attributes"]["setup"];
-    let players = boardData["attributes"]["players"];
-    let pattern = boardData["attributes"]["pattern"];
-
-    let chessBoard = [];
-    for (let i = 0; i < 8; i++) {
-        chessBoard[i] = [];
-        for (let j = 0; j < 8; j++) {
-            for (let player in players) {
-                let player_delimiter = players[player]["delimiter"];
-                if (startingChessBoard[j][i].includes(player_delimiter)) {
-                    let separatedValue = startingChessBoard[j][i].replace(player_delimiter, '');
-                    chessBoard[i][j] = {
-                        "tile": {
-                            "x": i,
-                            "y": j,
-                            "pattern": pattern["colors"][pattern["setup"][i][j]], // Super awesome pattern system
-                        },
-                        "piece": {
-                            "player": player_delimiter,
-                            "pieceName": separatedValue,
-                            "color": players[player]["color"],
-                        }
-                    }
-                }
-            }
-        }
-    }
-    console.log(chessBoard);
-    return chessBoard;
-}
-
-function renderChessBoard(chessWindow, chessBoard, chessRuleset) {
-    let chessPieces = chessRuleset.pieces;
-    let boardData = chessRuleset.boardData["attributes"];
-    for (let i = 0; i < boardData["height"]; i++) {
-        for (let j = 0; j < boardData["width"]; j++) {
-            let chessPiece = chessPieces[chessBoard[i][j]["piece"]["pieceName"]]["sprite"];
-            let tileColor = chessBoard[i][j]["tile"]["pattern"];
-            let pieceColor = chessBoard[i][j]["piece"]["color"];
-            let color = [tileColor, pieceColor];
-
-            for (let k = 0; k < boardData["tileHeight"]; k++) {
-                let rowOffset = k * 16;
-                let spaces = ' '.repeat(boardData["tileWidth"]);
-                chessWindow.drawText(spaces, i*(boardData["tileWidth"]*8), j*(boardData["tileHeight"]*16)+rowOffset, color);
-                console.log(spaces);
-            }
-
-            let pieceYOffset = 16*boardData["pieceYOffset"];
-            let pieceXOffset = 8*boardData["pieceXOffset"];
-
-            for (let k = 0; k < boardData["pieceHeight"]; k++) {
-                let rowOffset = k * 16;
-                // We do not check for pieceWidth because in Freakbob we trust
-                chessWindow.drawText(chessPiece[k], i*(boardData["tileWidth"]*8)+pieceXOffset, j*(boardData["tileHeight"]*16)+rowOffset+pieceYOffset, color);
-            }
-            
-        }
-    }
+async function game(chessRuleset) {
+    let chessGame = new ChessGame(chessRuleset);
+    chessGame.render();
 }
