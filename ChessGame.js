@@ -1,4 +1,33 @@
 class ChessGame {
+    static gameplayController = (textWindow=null, chessWindow=null, chessBoard=null, chessRuleset=null, renderChessTile=null) => {
+        let menuPos = 0;
+        document.addEventListener("keydown", function(event) {
+            const key = event.key;
+            switch (key) {
+                case "w":
+                    if (cursorY > 0) cursorY--;
+                    break;
+                case "s":
+                    if (cursorY < 7) cursorY++;
+                    break;
+                case "a":
+                    if (cursorX > 0) cursorX--;
+                    break;
+                case "d":
+                    if (cursorX < 7) cursorX++;
+                    break;
+                case "Enter":
+                    selectedX = cursorX;
+                    selectedY = cursorY;
+                    break;
+                case "Backspace":
+                    selectedX = null;
+                    selectedY = null;
+                    break;
+            }
+        });
+    }
+
     constructor(chessRuleset) {
         this.chessRuleset = chessRuleset;
         this.boardData = this.chessRuleset.boardData["attributes"];
