@@ -1,28 +1,30 @@
+import {TextWindow, KeyBehaviour} from 'https://files.glitchtech.top/GE.js';
+
 class ChessGame {
-    static gameplayController = (textWindow=null, chessWindow=null, chessBoard=null, chessRuleset=null, renderChessTile=null) => {
-        let menuPos = 0;
+    static gameplayController = (chessGame=null) => {
         document.addEventListener("keydown", function(event) {
             const key = event.key;
+            chessGame.renderChessTile(chessGame.cursorX, chessGame.cursorY, 2);
             switch (key) {
                 case "w":
-                    if (cursorY > 0) cursorY--;
+                    if (chessGame.cursorY > 0) chessGame.cursorY--;
                     break;
                 case "s":
-                    if (cursorY < 7) cursorY++;
+                    if (chessGame.cursorY < 7) chessGame.cursorY++;
                     break;
                 case "a":
-                    if (cursorX > 0) cursorX--;
+                    if (chessGame.cursorX > 0) chessGame.cursorX--;
                     break;
                 case "d":
-                    if (cursorX < 7) cursorX++;
+                    if (chessGame.cursorX < 7) chessGame.cursorX++;
                     break;
                 case "Enter":
-                    selectedX = cursorX;
-                    selectedY = cursorY;
+                    chessGame.selectedX = chessGame.cursorX;
+                    chessGame.selectedY = chessGame.cursorY;
                     break;
                 case "Backspace":
-                    selectedX = null;
-                    selectedY = null;
+                    chessGame.selectedX = null;
+                    chessGame.selectedY = null;
                     break;
             }
         });
@@ -38,6 +40,11 @@ class ChessGame {
         console.log(this.width, this.height);
         //TODO: Make chess window below solely dependent on size of board
         this.chessWindow = new TextWindow(640, this.height, 0, 0, 0, 0, false, null);
+
+        this.cursorX = 0;
+        this.cursorY = 0;
+        this.selectionX = null;
+        this.selectionY = null;
     }
 
     render() {
@@ -108,3 +115,5 @@ class ChessGame {
         }
     }
 }
+
+export {ChessGame};
