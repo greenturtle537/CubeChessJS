@@ -34,8 +34,8 @@ function main() {
         });
     }
 
-    gameWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, "", menuBehaviour, {menuPos: 0});
-    const gameWindow = new TextWindow({
+    //gameWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, "", menuBehaviour, {menuPos: 0});
+    gameWindow = new TextWindow({
         width: 640,
         height: 384,
         x: 0,
@@ -46,13 +46,13 @@ function main() {
         text: "",
         keyRules: menuBehaviour,
         keyRulesParameters: {menuPos: 0}
-     });
-    mainMenu();
+    });
+    mainMenu(gameWindow);
 }
 
 
 
-function mainMenu() {
+function mainMenu(gamewindow) {
     //This is the main menu
     gameWindow.drawText("> Main Menu", 288, 0);
     gameWindow.drawText("> Play Chess", 0, 16);

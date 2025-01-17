@@ -39,7 +39,16 @@ class ChessGame {
         this.height = this.boardData["height"] * this.boardData["tileHeight"] * 16;
         console.log(this.width, this.height);
         //TODO: Make chess window below solely dependent on size of board
-        this.chessWindow = new TextWindow(640, this.height, 0, 0, 0, 0, false, null);
+        this.chessWindow = new TextWindow({
+            width: 640, 
+            height: this.height, 
+            x: 0, 
+            y: 0, 
+            rows: 0, 
+            cols: 0, 
+            editable: false, 
+            text: ""
+        });
 
         this.cursorX = 0;
         this.cursorY = 0;
@@ -50,7 +59,7 @@ class ChessGame {
     render() {
         for (let i = 0; i < this.boardData["height"]; i++) {
             for (let j = 0; j < this.boardData["width"]; j++) {
-                renderChessTile(i, j);
+                this.renderChessTile(i, j);
             }
         }
     }
@@ -88,7 +97,7 @@ class ChessGame {
     }
 
     renderChessTile(i, j, backgroundColor=null) {
-        let chessPiece = this.chessPieces[this.chessBoard[i][j]["piece"]["pieceName"]]["sprite"];
+        let chessPiece = this.pieces[this.chessBoard[i][j]["piece"]["pieceName"]]["sprite"];
         let tileColor = this.chessBoard[i][j]["tile"]["pattern"];
     
         if (backgroundColor != null) {
