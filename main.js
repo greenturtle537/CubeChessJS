@@ -1,52 +1,58 @@
 import {CanvasWindow, TextWindow, KeyBehaviour} from 'https://files.glitchtech.top/GE.js';
+import {ChessGame} from "./ChessGame.js";
 const canvasWindow = new CanvasWindow(640, 384, main); // Allows for a 80x24 text grid with 8x16 characters
 let gameWindow;
 
 function main() {
-    const menuBehaviour = (textWindow=null) => {
+    const menuBehaviour = (textWindow=null, params=null) => {
         let menuPos = 0;
         document.addEventListener("keydown", function(event) {
             const key = event.key;
-            if  ((key === "w" || key === "s") && (menuPos != -1 && menuPos != 3)) {
-                textWindow.drawText(">", 0, 0+(16*(menuPos+1)));
+            if  ((key === "w" || key === "s") && (params.menuPos != -1 && params.menuPos != 3)) {
+                textWindow.drawText(">", 0, 0+(16*(params.menuPos+1)));
             }
-            if ( key === "w" && menuPos != 0) {
-                menuPos--;
-                textWindow.drawText(">", 0, 0+(16*(menuPos+1)), [15,0]);
-            } else if (key === "s" && menuPos != 2) {
-                menuPos++;
-                textWindow.drawText(">", 0, 0+(16*(menuPos+1)), [15,0]);
+            if ( key === "w" && params.menuPos != 0) {
+                params.menuPos--;
+                textWindow.drawText(">", 0, 0+(16*(params.menuPos+1)), [15,0]);
+            } else if (key === "s" && params.menuPos != 2) {
+                params.menuPos++;
+                textWindow.drawText(">", 0, 0+(16*(params.menuPos+1)), [15,0]);
             } else if (key === "Enter") {
-                if (menuPos === 0) {
+                if (params.menuPos === 0) {
                     // Start
                     textWindow.drawText("An Error Occured", 272, [0, 12]);
                     textWindow.clearScreen();
                     selectionMenu();
-                } else if (menuPos === 1) {
+                } else if (params.menuPos === 1) {
                     // Options
                     textWindow.drawText("An Error Occured", 272, [0, 12]);
-                } else if (menuPos === 2) {
+                } else if (params.menuPos === 2) {
                     // Exit
                     textWindow.drawText("An Error Occured", 272, [0, 12]);
                 }
             }
         });
     }
-    const chessBehaviour = (textWindow=null) => {
-        let menuPos = 0;
-        document.addEventListener("keydown", function(event) {
-            const key = event.key;
-        });
-    }
 
-    gameWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, menuBehaviour);
-
-    mainMenu();
+    //gameWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, "", menuBehaviour, {menuPos: 0});
+    gameWindow = new TextWindow({
+        width: 640,
+        height: 384,
+        x: 0,
+        y: 0,
+        rows: 0,
+        cols: 0,
+        editable: false,
+        text: "",
+        keyRules: menuBehaviour,
+        keyRulesParameters: {menuPos: 0}
+    });
+    mainMenu(gameWindow);
 }
 
 
 
-function mainMenu() {
+function mainMenu(gamewindow) {
     //This is the main menu
     gameWindow.drawText("> Main Menu", 288, 0);
     gameWindow.drawText("> Play Chess", 0, 16);
@@ -113,85 +119,7 @@ function selectionMenu() {
     });
 }
 
-function game(chessRuleset) {
-    let gameWindow = new TextWindow(640, 384, 0, 0, 0, 0, false, null);
-    gameWindow.drawText("=== Chess ===", 288, 0);
-
-    let chessBoard = initChessBoard(chessRuleset.boardData);
-
-    const chessPieces = {
-        "blank": ["   ", "   ", "   "], // Empty
-        "rook": ["╚╬╝", ") (", "[_]"], // Rook
-        "knight": ["T\\ ", "|\\)", "[_]"], // Knight
-        "bishop": ["(+)", ") (", "[_]"], // Bishop
-        "queen": [" . ", ") (", "[_]"], // Queen
-        "king": [" ┼ ", ") (", "[_]"], // King
-        "pawn": ["   ", " o ", "[_]"], // Pawn
-    }
-
-    renderChessBoard(gameWindow, chessBoard, chessRuleset);
-
-};
-
-function initChessBoard(boardData) {
-    let startingChessBoard = boardData["attributes"]["setup"];
-    let players = boardData["attributes"]["players"];
-    let pattern = boardData["attributes"]["pattern"];
-
-    let chessBoard = [];
-    for (let i = 0; i < 8; i++) {
-        chessBoard[i] = [];
-        for (let j = 0; j < 8; j++) {
-            for (let player in players) {
-                let player_delimiter = players[player]["delimiter"];
-                if (startingChessBoard[j][i].includes(player_delimiter)) {
-                    let separatedValue = startingChessBoard[j][i].replace(player_delimiter, '');
-                    chessBoard[i][j] = {
-                        "tile": {
-                            "x": i,
-                            "y": j,
-                            "pattern": pattern["colors"][pattern["setup"][i][j]], // Super awesome pattern system
-                        },
-                        "piece": {
-                            "player": player_delimiter,
-                            "pieceName": separatedValue,
-                            "color": players[player]["color"],
-                        }
-                    }
-                }
-            }
-        }
-    }
-    console.log(chessBoard);
-    return chessBoard;
-}
-
-function renderChessBoard(chessWindow, chessBoard, chessRuleset) {
-    let chessPieces = chessRuleset.pieces;
-    let boardData = chessRuleset.boardData["attributes"];
-    for (let i = 0; i < boardData["height"]; i++) {
-        for (let j = 0; j < boardData["width"]; j++) {
-            let chessPiece = chessPieces[chessBoard[i][j]["piece"]["pieceName"]]["sprite"];
-            let tileColor = chessBoard[i][j]["tile"]["pattern"];
-            let pieceColor = chessBoard[i][j]["piece"]["color"];
-            let color = [tileColor, pieceColor];
-
-            for (let k = 0; k < boardData["tileHeight"]; k++) {
-                let rowOffset = k * 16;
-                let spaces = ' '.repeat(boardData["tileWidth"]);
-                chessWindow.drawText(spaces, i*(boardData["tileWidth"]*8), j*(boardData["tileHeight"]*16)+rowOffset, color);
-                console.log(spaces);
-            }
-
-            let pieceYOffset = 16*boardData["pieceYOffset"];
-            let pieceXOffset = 8*boardData["pieceXOffset"];
-
-            for (let k = 0; k < boardData["pieceHeight"]; k++) {
-                let rowOffset = k * 16;
-                // We do not check for pieceWidth because in Freakbob we trust
-                chessWindow.drawText(chessPiece[k], i*(boardData["tileWidth"]*8)+pieceXOffset, j*(boardData["tileHeight"]*16)+rowOffset+pieceYOffset, color);
-            }
-            
-        }
-    }
+async function game(chessRuleset) {
+    let chessGame = new ChessGame(chessRuleset);
+    chessGame.render();
 }
